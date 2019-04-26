@@ -1,11 +1,9 @@
 const http = require('http')
+const fs = require('fs')
 
 const server = http.createServer((request, response) => {
-    // console.log('====================================');
-    // console.log(request.url, request.method, request.headers);
-    // console.log('====================================');
-
     const url = request.url
+    const method = request.method
 
     let html = null
 
@@ -16,13 +14,43 @@ const server = http.createServer((request, response) => {
                     <title>My First Node Page</title>
                 </head>
                 <body>
-                    <form action="/message" method="POST" name="message">
-                        <input type="text" />
+                    <form action="/message" method="POST">
+                        <input type="text" name="message" />
                         <button type="submit">Send</button>
                     </form>
                 </body>
             </html>
         `
+    } else {
+        html = `
+            <html>
+                <head>
+                    <title>My First Node Page</title>
+                </head>
+                <body>
+                    <h1>This is my Node.js project</h1>
+                </body>
+            </html>
+        `
+    }
+
+    if (url === '/message' && method === 'POST') {
+        const body = []
+        
+        request.on('data', (chunk) => {
+            body.push(chunk)
+        })
+
+        return request.on('end', () => {
+            const parseBody = Buffer.concat(body).toString()
+            const message = parseBody.split('=')[1]
+            
+            fs.writeFile('message.txt', message, (error) => {
+                response.statusCode = 302
+                response.setHeader('Location', '/')
+                return response.end()
+            })
+        })
     }
 
     response.setHeader('Content-Header', 'text/html')
