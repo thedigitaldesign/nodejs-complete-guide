@@ -1,6 +1,6 @@
 const http = require('http')
 
-// Exports
+// Modules
 const RouteHandler = require('./routes')
 
 const server = http.createServer(RouteHandler)

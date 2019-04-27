@@ -1,33 +1,21 @@
 // Packages
 const express = require('express')
+const path = require('path')
 
-// Exports
 
-// App
+// Modules
+const dir = require('../util/path')
+
+
+// Routes
 const router = express.Router()
-let html = (body) => {
-    return `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Document</title>
-        </head>
-        <body>
-            ${ body }
-        </body>
-        </html>
-    `
-}
-let body = ``
+let page = null
 
 router.get('/', (request, response, next) => {
-    body = `
-        <h1>Welcome to my Express.js store</h1>
-    `
-    response.send(html(body))
+    page = path.join(dir, 'views', 'shop.html')
+    response.sendFile(page)
 })
 
+
+// Export
 module.exports = router

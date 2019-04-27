@@ -1,7 +1,7 @@
 // Packages
 const express = require('express')
 
-// Exports
+// Modules
 
 // App
 const app = express()

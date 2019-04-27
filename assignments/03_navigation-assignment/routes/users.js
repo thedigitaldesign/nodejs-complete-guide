@@ -11,14 +11,14 @@ const dir = require('../util/path')
 const router = express.Router()
 let page = null
 
-router.get('/add-product', (request, response, next) => {
-    page = path.join(dir, 'views', 'add-product.html')
+router.get('/users', (request, response, next) => {
+    page = path.join(dir, 'views', 'users.html')
     response.sendFile(page)
 })
 
-router.post('/add-product', (request, response, next) => {
-    console.log(request.body)
-    response.redirect('/')
+router.get('/', (request, response, next) => {
+    page = path.join(dir, 'views', 'index.html')
+    response.sendFile(page)
 })
 
 
