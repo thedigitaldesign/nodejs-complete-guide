@@ -1,0 +1,26 @@
+{
+    "name": "nodejs-complete-guide",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thedigitaldesign/nodejs-complete-guide.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/thedigitaldesign/nodejs-complete-guide/issues"
+    },
+    "homepage": "https://github.com/thedigitaldesign/nodejs-complete-guide#readme",
+    "devDependencies": {
+        "nodemon": "^1.18.11"
+    },
+    "dependencies": {
+        "express": "^4.16.4"
+    }
+}

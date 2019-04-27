@@ -1,9 +1,31 @@
 const http = require('http')
 
-// Modules
-const routes = require('./routes')
+// Packages
+const express = require('express')
+
+// Exports
+
 
 // Server
-const server = http.createServer(routes)
+const app = express()
 
-server.listen(3001)
+//-- NOTE:  .use will be used for every incoming request
+app.use((request, response, next) => {
+    console.log('In the middleware')
+    next() //-- NOTE: Allows the request to continue to the next middleware in-line
+})
+
+app.use((request, response, next) => {
+    console.log('In another middleware')
+
+    response.send(`
+        <h1>Hello from Express.js</h1>
+    `)
+
+    //response.end()
+})
+
+// const server = http.createServer(app)
+// server.listen(3001)
+
+app.listen(3001)
