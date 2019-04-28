@@ -5,6 +5,7 @@ const path = require('path')
 
 // Modules
 const dir = require('../util/path')
+const admin = require('./admin')
 
 
 // Routes
@@ -12,10 +13,21 @@ const router = express.Router()
 let page = null
 
 router.get('/', (request, response, next) => {
-    page = path.join(dir, 'views', 'shop.html')
-    response.sendFile(page)
+    // Express
+    //page = path.join(dir, 'views', 'shop.html')
+    //response.sendFile(page)
+
+    // Pug - Handlebars (hbhtml)
+    const product = admin.products
+    response.render('shop', { 
+        products: product, 
+        title: 'Shop',
+        empty: product.length > 0
+    })
 })
 
 
-// Export
-module.exports = router
+// Exports
+module.exports = {
+    routes: router
+}

@@ -1,0 +1,50 @@
+
+<h1>Products</h1>
+
+<div class="grid">
+    <article class="card product-item">
+        <header class="card__header">
+            <h1 class="product__title">The Wonderful Things You Will Be</h1>
+        </header>
+        <div class="card__image">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/51gEY86ijML._SX474_BO1,204,203,200_.jpg" alt="" />
+        </div>
+        <div class="card__content">
+            <h2 class="product__price">$19.99</h2>
+            <p class="product___description">
+                From brave and bold to creative and clever, Emily Winfield Martin's rhythmic rhyme expresses all the loving things that
+                parents think of when they look at their children. With beautiful, and sometimes humorous, illustrations, and a clever
+                gatefold with kids in costumes, this is a book grown-ups will love reading over and over to kids—both young and old. A
+                great gift for any occasion, but a special stand-out for baby showers, birthdays, and graduation. The Wonderful Things
+                You Will Be has a loving and truthful message that will endure for lifetimes.
+            </p>
+        </div>
+        <div class="card__actions">
+            <button class="btn">Add to Cart</button>
+        </div>
+    </article>
+
+    {{#if empty}}
+        {{#each products}}
+            <article class="card product-item">
+                <header class="card__header">
+                    <h1 class="product__title">{{this.title}}</h1>
+                </header>
+                <div class="card__image">
+                    <img src="{{this.image}}" alt="{{this.alt}}" />
+                </div>
+                <div class="card__content">
+                    <h2 class="product__price">${{this.price}}</h2>
+                    <p class="product___description">
+                        {{this.description}}
+                    </p>
+                </div>
+                <div class="card__actions">
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </article>
+        {{/each}}
+    {{ else }}
+        <em>The End...</em>
+    {{/if}}
+</div>
